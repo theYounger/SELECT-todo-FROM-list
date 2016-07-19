@@ -45,9 +45,23 @@ UPDATE tasks
 SELECT title, description FROM tasks WHERE completed_at IS NULL;
 --ix
 SELECT * FROM tasks ORDER BY created_at DESC;
+--x
+INSERT INTO tasks VALUES (DEFAULT, 'mistake 1', 'a test entry', DEFAULT, DEFAULT, DEFAULT);
+--xi
+INSERT INTO tasks VALUES (DEFAULT, 'mistake 2', 'another test entry', DEFAULT, DEFAULT, DEFAULT);
+--xii
+INSERT INTO tasks VALUES (DEFAULT, 'third mistake', 'another test entry', DEFAULT, DEFAULT, DEFAULT);
+--xiii
+SELECT title FROM tasks WHERE title LIKE '%mistake%';
+--xiv
+DELETE FROM tasks WHERE title = 'mistake 1';
+--xv
+SELECT title, description FROM tasks WHERE title LIKE '%mistake%';
+--xvi
+DELETE FROM tasks WHERE title LIKE '%mistake%';
+--xvii
+SELECT * FROM tasks ORDER BY title DESC;
 \d+ tasks;
-
-
 SELECT * FROM tasks;
 --end
 \c kyle;
